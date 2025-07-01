@@ -77,7 +77,7 @@ export function ContactSection() {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            Let's discuss opportunities, collaborations, or just have a chat about
+            Let&apos;s discuss opportunities, collaborations, or just have a chat about
             technology and innovation.
           </p>
         </motion.div>
@@ -138,7 +138,7 @@ export function ContactSection() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-background-tertiary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                  placeholder="What's this about?"
+                  placeholder="What&apos;s this about?"
                 />
               </div>
 
@@ -219,11 +219,11 @@ export function ContactSection() {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-text-primary mb-4">Let's Collaborate</h4>
+                <h4 className="text-lg font-semibold text-text-primary mb-4">Let&apos;s Collaborate</h4>
                 <p className="text-text-secondary leading-relaxed">
-                  I'm always interested in discussing new opportunities, innovative projects,
+                  I&apos;m always interested in discussing new opportunities, innovative projects,
                   and collaborations in systems engineering, AI, and emerging technologies.
-                  Whether you have a project in mind or just want to connect, I'd love to hear from you.
+                  Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
                 </p>
               </div>
 

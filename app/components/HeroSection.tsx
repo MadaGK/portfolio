@@ -44,7 +44,7 @@ export function HeroSection() {
             className="mb-8"
           >
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              Hi, I'm{' '}
+              Hi, I&apos;m{' '}
               <span className="gradient-text">Mada Kasasi</span>
             </h1>
           </motion.div>
