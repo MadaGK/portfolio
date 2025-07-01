@@ -142,7 +142,7 @@ export default function BlogPage() {
                     No articles found
                   </h3>
                   <p className="text-text-secondary mb-6">
-                    Try adjusting your search or filters to find what you're looking for.
+                    Try adjusting your search or filters to find what you&apos;re looking for.
                   </p>
                   <button
                     onClick={() => {
