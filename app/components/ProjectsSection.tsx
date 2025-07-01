@@ -2,19 +2,36 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { FiGithub, FiExternalLink, FiFilter } from 'react-icons/fi'
+import { FiGithub, FiExternalLink, FiFilter, FiSearch } from 'react-icons/fi'
 import { projects } from '../data/projects'
 import { Project } from '../types'
 
 export function ProjectsSection() {
   const [filter, setFilter] = useState<'all' | 'featured' | 'complete' | 'wip'>('all')
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
 
   const filteredProjects = projects.filter((project) => {
+    // Search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase()
+      const matchesSearch = 
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.longDescription.toLowerCase().includes(query) ||
+        project.techStack.some(tech => tech.toLowerCase().includes(query))
+      
+      if (!matchesSearch) return false
+    }
+
+    // Status filter
     if (filter === 'featured' && !project.featured) return false
     if (filter === 'complete' && project.status !== 'Complete') return false
     if (filter === 'wip' && project.status !== 'WIP') return false
+    
+    // Tech stack filter
     if (selectedTech && !project.techStack.includes(selectedTech)) return false
+    
     return true
   })
 
@@ -41,7 +58,7 @@ export function ProjectsSection() {
           </p>
         </motion.div>
 
-        {/* Filters */}
+        {/* Search and Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,6 +66,20 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
+          {/* Search Bar */}
+          <div className="max-w-md mx-auto mb-8">
+            <div className="relative">
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-tertiary" size={20} />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-background-tertiary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 text-text-primary placeholder-text-tertiary"
+              />
+            </div>
+          </div>
+
           <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
             {['all', 'featured', 'complete', 'wip'].map((filterOption) => (
               <motion.button

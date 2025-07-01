@@ -7,7 +7,7 @@ import { useTheme } from './ThemeProvider'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +45,7 @@ export function Header() {
         </motion.div>
 
         <div className="hidden md:flex items-center space-x-8">
-          {['About', 'Projects', 'Contact'].map((item) => (
+          {['About', 'Projects', 'Blog', 'Contact'].map((item) => (
             <motion.button
               key={item}
               whileHover={{ scale: 1.05 }}
@@ -61,7 +61,7 @@ export function Header() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={toggleTheme}
           className="p-2 rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors duration-200"
         >
           {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}

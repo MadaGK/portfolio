@@ -1,15 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { FiArrowDown, FiGithub, FiMail } from 'react-icons/fi'
 import { ParticleBackground } from './ParticleBackground'
+import { HeroSkeleton } from './SkeletonLoader'
 
 export function HeroSection() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => setIsLoading(false), 1000)
+    return () => clearTimeout(timer)
+  }, [])
+
   const scrollToProjects = () => {
     const element = document.getElementById('projects')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  if (isLoading) {
+    return <HeroSkeleton />
   }
 
   return (

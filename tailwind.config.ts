@@ -13,16 +13,16 @@ const config: Config = {
         primary: '#0070F3',
         'primary-dark': '#0051CC',
         background: {
-          DEFAULT: '#000000',
-          secondary: '#111111',
-          tertiary: '#1a1a1a',
+          DEFAULT: 'hsl(var(--background))',
+          secondary: 'hsl(var(--background-secondary))',
+          tertiary: 'hsl(var(--background-tertiary))',
         },
         text: {
-          primary: '#ffffff',
-          secondary: '#a1a1aa',
-          tertiary: '#71717a',
+          primary: 'hsl(var(--text-primary))',
+          secondary: 'hsl(var(--text-secondary))',
+          tertiary: 'hsl(var(--text-tertiary))',
         },
-        border: '#27272a',
+        border: 'hsl(var(--border))',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
