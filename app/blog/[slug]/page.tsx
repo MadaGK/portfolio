@@ -7,16 +7,14 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { ErrorBoundary } from '../../components/ErrorBoundary'
 import { BlogContent } from '../../components/BlogContent'
+import { use } from 'react'
 
-type BlogPostPageProps = {
-  params: { slug: string }
-};
-
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find(p => p.id === params.slug)
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
+  const post = blogPosts.find(p => p.id === slug)
 
   if (!post) {
-    notFound()
+    return notFound()
   }
 
   const handleShare = (platform: 'twitter' | 'linkedin') => {
