@@ -41,9 +41,8 @@ export function Header() {
           className="text-xl font-bold gradient-text cursor-pointer"
           onClick={() => scrollToSection('hero')}
         >
-          MK
+          MGK
         </motion.div>
-
         <div className="hidden md:flex items-center space-x-8">
           {['About', 'Projects', 'Blog', 'Contact'].map((item) => (
             <motion.button
