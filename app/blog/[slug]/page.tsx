@@ -8,7 +8,7 @@ import { Footer } from '../../components/Footer'
 import { ErrorBoundary } from '../../components/ErrorBoundary'
 import { BlogContent } from '../../components/BlogContent'
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = blogPosts.find(p => p.id === params.slug)
 
   if (!post) {
