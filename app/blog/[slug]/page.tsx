@@ -10,15 +10,8 @@ import { Footer } from '../../components/Footer'
 import { ErrorBoundary } from '../../components/ErrorBoundary'
 import { BlogContent } from '../../components/BlogContent'
 
-interface BlogPostPageProps {
-  params: Promise<{
-    slug: string
-  }>
-}
-
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
-  const post = blogPosts.find(p => p.id === slug)
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = blogPosts.find(p => p.id === params.slug)
 
   if (!post) {
     notFound()
