@@ -4,7 +4,7 @@ export interface Project {
   description: string
   longDescription: string
   techStack: string[]
-  githubUrl: string
+  projectUrl: string
   liveUrl?: string
   status: 'WIP' | 'Complete'
   featured: boolean

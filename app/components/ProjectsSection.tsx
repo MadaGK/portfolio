@@ -198,13 +198,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href={project.githubUrl}
+            href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors duration-200"
           >
-            <FiGithub size={16} />
-            <span className="text-sm">Code</span>
+            {project.projectUrl.includes('github.com') ? <FiGithub size={16} /> : <FiExternalLink size={16} />}
+            <span className="text-sm">{project.projectUrl.includes('github.com') ? 'Code' : 'Visit'}</span>
           </motion.a>
           {project.liveUrl && (
             <motion.a
