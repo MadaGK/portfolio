@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FiMail, FiGithub, FiTwitter, FiInstagram, FiSend, FiCheck } from 'react-icons/fi'
 import { ContactForm } from '../types'
+import emailjs from 'emailjs-com'
 
 export function ContactSection() {
   const [form, setForm] = useState<ContactForm>({
@@ -18,18 +19,27 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
+    try {
+      await emailjs.send(
+        'service_hf9y862',
+        'template_3kn2tc4',
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: form.subject,
+          message: form.message,
+          to_email: 'madagkasasi@gmail.com',
+        },
+        'vDdzSua_Cz3Pdfr44'
+      )
+      setIsSubmitted(true)
       setForm({ name: '', email: '', subject: '', message: '' })
-    }, 3000)
+      setTimeout(() => setIsSubmitted(false), 3000)
+    } catch (error) {
+      alert('Failed to send message. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -60,6 +70,12 @@ export function ContactSection() {
       url: 'https://instagram.com/madakasasi',
       icon: FiInstagram,
       color: 'hover:text-pink-400',
+    },
+    {
+      name: 'WhatsApp',
+      url: 'https://wa.me/265883292865',
+      icon: FiSend,
+      color: 'hover:text-green-500',
     },
   ]
 
